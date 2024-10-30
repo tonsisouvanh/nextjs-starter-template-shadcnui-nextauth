@@ -1,8 +1,7 @@
-
 export default function Home() {
   return (
-    <div className="">
-      <h1>Hello</h1>
-    </div>
+    <>
+      <div className="mx-auto flex min-h-screen max-w-lg flex-col justify-between bg-white"></div>
+    </>
   );
 }

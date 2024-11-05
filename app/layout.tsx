@@ -5,6 +5,7 @@ import { Noto_Sans_Lao } from 'next/font/google';
 import ReactQueryProvider from '@/lib/provider/ReactQueryProvider';
 import { Toaster } from '@/components/ui/toaster';
 import Providers from '@/lib/provider/Provider';
+import { ThemeProvider } from '@/lib/provider/theme-provider';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -60,7 +61,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${notoSansLao.className} antialiased`}>
         <ReactQueryProvider>
           <Providers>
-            <main className="">{children}</main>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+              <main className="">{children}</main>
+            </ThemeProvider>
           </Providers>
           <Toaster />
         </ReactQueryProvider>

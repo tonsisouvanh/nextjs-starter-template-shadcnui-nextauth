@@ -28,6 +28,10 @@ const authOptions: NextAuthOptions = {
           where: { email: credentials.email },
         });
 
+        if (!user) {
+          throw new Error('Email is not registered');
+        }
+
         if (user && (await bcrypt.compare(credentials.password, user.password))) {
           if (user.status === 'INACTIVE') {
             throw new Error('inactive');

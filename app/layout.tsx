@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     // shortcut: ['/apple-touch-icon.png'],
   },
   openGraph: {
-    title: 'HEINEKEN | Wedding promotion 2024',
-    description: 'Heineken beer - Enjoy the best quality beer from Heineken.',
+    title: 'YOUR APP NAME | App description',
+    description: 'Description of the app',
     url: 'https://www.heinekenlaos.la/',
     images: [
       {
@@ -57,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning={true} lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${notoSansLao.className} antialiased`}>
         <ReactQueryProvider>
           <Providers>

@@ -26,3 +26,15 @@ model Post {
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
 }
+
+model ErrorLog {
+  id           String   @id @default(uuid())
+  timestamp    DateTime @default(now())
+  endpoint     String
+  requestBody  Json
+  errorMessage String   @db.Text
+  stackTrace   String?  @db.LongText
+  created_at   DateTime @default(now())
+
+  @@map("error_logs")
+}

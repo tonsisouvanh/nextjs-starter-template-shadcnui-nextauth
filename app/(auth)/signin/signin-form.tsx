@@ -35,13 +35,13 @@ const SigninForm = () => {
           });
         } else
           toast({
-            title: 'Invalid email or password!',
+            title: result?.error || 'An error occurred',
             description: '',
             variant: 'destructive',
           });
       } else {
         router.refresh();
-        router.push('/admin');
+        // router.push('/');
       }
     } catch (error) {
       console.log('error', error);
@@ -49,6 +49,7 @@ const SigninForm = () => {
       setIsLoading(false);
     }
   };
+
   return (
     <>
       <Card className="w-full max-w-md">

@@ -3,6 +3,7 @@ import { twMerge } from 'tailwind-merge';
 import { formatDistanceToNow } from 'date-fns';
 import { formatInTimeZone, toZonedTime } from 'date-fns-tz';
 import { Prisma } from '@prisma/client';
+import { toast } from '@/hooks/use-toast';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -102,6 +103,22 @@ export const provinceMapping: { [key: string]: string } = {
 export const getProvinceFullName = (shortcut: string) => {
   return provinceMapping[shortcut] || shortcut;
 };
+
+export const generateOrderNumber = (): string => {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+
+  const randomString = Math.random().toString(36).substring(2, 5).toUpperCase();
+
+  return `${randomString}${hours}${minutes}${seconds}${milliseconds}`;
+};
+
+export function capitalize(theme: string) {
+  return theme.charAt(0).toUpperCase() + theme.slice(1);
+}
 
 export const getFilename = (images: string): string | null => {
   try {
@@ -211,18 +228,61 @@ export function isValidPhoneNumber(phoneNumber: string): boolean {
   return /^20\d{8}$/.test(normalizedNumber);
 }
 
-const generateOrderNumber = (): string => {
-  const now = new Date();
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
-  const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
-
-  const randomString = Math.random().toString(36).substring(2, 5).toUpperCase();
-
-  return `${randomString}${hours}${minutes}${seconds}${milliseconds}`;
+export const checkFormErrors = (errors: any) => {
+  if (errors.shop_id) {
+    toast({
+      title: 'ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບຖ້ວນ',
+      variant: 'warning',
+    });
+  } else if (errors.user_province) {
+    toast({
+      title: 'ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບຖ້ວນ',
+      variant: 'warning',
+    });
+  } else if (errors.user_district) {
+    toast({
+      title: 'ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບຖ້ວນ',
+      variant: 'warning',
+    });
+  } else if (errors.user_village) {
+    toast({
+      title: 'ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບຖ້ວນ',
+      variant: 'warning',
+    });
+  } else if (errors.day) {
+    toast({
+      title: 'ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບຖ້ວນ',
+      variant: 'warning',
+    });
+  } else if (errors.month) {
+    toast({
+      title: 'ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບຖ້ວນ',
+      variant: 'warning',
+    });
+  } else if (errors.year) {
+    toast({
+      title: 'ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບຖ້ວນ',
+      variant: 'warning',
+    });
+  } else if (errors.user_phone) {
+    toast({
+      title: 'ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບຖ້ວນ',
+      variant: 'warning',
+    });
+  } else if (errors.user_gender) {
+    toast({
+      title: 'ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບຖ້ວນ',
+      variant: 'warning',
+    });
+  } else if (errors.accept_terms) {
+    toast({
+      title: 'ກະລຸນາຍອມຮັບເງື່ອນໄຂ ແລະ ຂໍ້ກຳນົດການໃຊ້ງານ',
+      variant: 'warning',
+    });
+  } else if (errors.event_id) {
+    toast({
+      title: 'ກະລຸນາປ້ອນຂໍ້ມູນໃຫ້ຄົບຖ້ວນ',
+      variant: 'warning',
+    });
+  }
 };
-
-export function capitalize(theme: string) {
-  return theme.charAt(0).toUpperCase() + theme.slice(1);
-}
